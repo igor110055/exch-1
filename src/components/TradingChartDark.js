@@ -4,7 +4,7 @@ import { AdvancedChart } from 'react-tradingview-embed';
 export default function TradingChart() {
   return (
     <>
-      <div className="main-chart mb15">
+      <div className="main-chart mb15 test2">
         <AdvancedChart
           widgetProps={{
             theme: 'dark',

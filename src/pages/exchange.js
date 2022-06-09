@@ -9,6 +9,10 @@ import TradingChart from '../components/TradingChart';
 import TradingChartDark from '../components/TradingChartDark';
 import { ThemeConsumer } from '../context/ThemeContext';
 
+import TradeViewChart from '../components/tradeChart/TradeViewChart';
+import {CrosshairMode, LineStyle} from "lightweight-charts";
+import {condleStickDefaultConfig, histogramDefaultConfig} from "../components/tradeChart/utils/constants";
+
 export default class exchange extends Component {
   render() {
     return (
@@ -22,7 +26,40 @@ export default class exchange extends Component {
               <ThemeConsumer>
                 {({ data }) => {
                   return data.theme === 'light' ? (
-                    <TradingChart />
+                    //<TradingChart />
+                      <div className="tradeChartWrapper">
+                        <TradeViewChart
+                            pair="BTCUSDT" interval={''}
+                            candleStickConfig={condleStickDefaultConfig}
+                            histogramConfig={histogramDefaultConfig}
+                            chartLayout={{
+                              layout: {
+                                backgroundColor: "#ededed",
+                                textColor: "#253248",
+                              },
+                              grid: {
+                                vertLines: {
+                                  color: "#838fa3",
+                                  style: LineStyle.SparseDotted,
+                                },
+                                horzLines: {
+                                  color: "#838fa3",
+                                  style: LineStyle.SparseDotted,
+                                },
+                              },
+                              crosshair: {
+                                mode: CrosshairMode.Normal,
+                              },
+                              priceScale: {
+                                borderColor: "#485c7b",
+                              },
+                              timeScale: {
+                                borderColor: "#485c7b",
+                                timeVisible: true,
+                                secondsVisible: false,
+                              },
+                            }}/>
+                      </div>
                   ) : (
                     <TradingChartDark />
                   );
